@@ -21,6 +21,7 @@ public class Recipe {
     private String Instructions;
     private String Cleaned_Ingredients;
     private Object Image;
+    
 //    private String source;
 //    private List<String> NER;
     private String newUniqueIdField;
