@@ -1,6 +1,6 @@
-# RecipeAppV1
+# RecipeApp
 
-Recipe App is a web application that provides access to a collection of 13,500 cooking recipes. Users can search for inspirational recipes based on the ingredients they have on hand.
+Recipe App is a full stack web application that provides access to a collection of 13,500 cooking recipes. Users can search for inspirational recipes based on the ingredients they have on hand.
 
 ## Table of Contents
 
