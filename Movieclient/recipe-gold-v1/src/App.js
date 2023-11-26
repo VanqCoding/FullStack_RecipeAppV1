@@ -1,8 +1,9 @@
 import './App.css';
 import api from './api/axiosConfig';
 import {useState, useEffect} from 'react';
-import Layout from './components/Layout';
 import {Routes, Route} from 'react-router-dom';
+
+import Layout from './components/Layout';
 import Home from './components/home/Home';
 import Header from './components/header/Header';
 import Reviews from './components/reviews/Reviews';
@@ -13,6 +14,8 @@ function App() {
   const [recipes, setRecipes] = useState();
   const [recipe, setRecipe] = useState();
   const [reviews, setReviews] = useState([]);
+
+  console.log('APP RECIPE IS:', JSON.stringify(recipe, null, 2));
 
   const getRecipes = async () =>{
     
@@ -31,25 +34,22 @@ function App() {
   }
 
   const getRecipeData = async (recipeId) => {
-     
-    try 
-    {
+    try {
+        console.log('Fetching recipe data for recipeId:', recipeId);
         const response = await api.get(`/api/v1/recipes/${recipeId}`);
-
         const singleRecipe = response.data;
+        /* console.log('Fetched recipe data:', singleRecipe); */
 
         setRecipe(singleRecipe);
 
-        setReviews(singleRecipe.reviews);
-        
-
-    } 
-    catch (error) 
-    {
-      console.error(error);
+        // --- FIXED ---
+        // setReviews(singleRecipe.reviews);
+        setReviews(singleRecipe.reviewIds);
+    } catch (error) {
+        console.error('Error fetching recipe data:', error);
     }
+};
 
-  }
 
   useEffect(() => {
     getRecipes();
@@ -60,9 +60,11 @@ function App() {
       <Header/>
       <Routes>
           <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<Home recipes={recipes} />} ></Route>
-            <Route path="/Reviews/:recipeId" element ={<Reviews getRecipeData = {getRecipeData} recipe={recipe} reviews ={reviews} setReviews = {setReviews} />}></Route>
-            <Route path="*" element = {<NotFound/>}></Route>
+          <Route path="/" element={<Home recipes={recipes} />} ></Route>
+
+          <Route path="/Reviews/:recipeId" element ={<Reviews getRecipeData = {getRecipeData} recipe={recipe} reviews={reviews} setReviews={setReviews} />}></Route>
+
+          <Route path="*" element = {<NotFound/>}></Route>
           </Route>
       </Routes>
 
