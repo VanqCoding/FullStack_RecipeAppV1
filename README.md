@@ -35,6 +35,7 @@ TODO:
 - [x] Pull randomized recipes from Backend to display on front carousel
 - [x] Show ingredients, instructions of chosen recipe with picture
 - [x] Handle decoding of pictures saved in binary in the database
+- [ ] Implement recipe searching
 - [ ] Submit own ingredients as text to get recipe suggestions
 - [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
 
