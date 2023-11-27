@@ -1,5 +1,5 @@
-![Demo](Demo.png)
-![Demo](Demo2.png)
+![Demo1](Demo.png)
+![Demo2](Demo2.png)
 
 # RecipeApp
 
