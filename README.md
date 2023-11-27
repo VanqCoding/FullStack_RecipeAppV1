@@ -23,6 +23,17 @@ Recipe App is a full-stack web application that combines a Java Spring Boot back
 - Access to a collection of 13,500 cooking recipes.
 - Search for recipes based on available ingredients.
 - User-friendly interface for a smooth browsing experience.
+TODO:
+- [x] Backend setup and running
+- [x] Database setup and running
+- [x] Frontend setup and running
+- [x] Ability to leave reviews on recipes that get saved in the database
+- [x] Pull randomized recipes from Backend to display on front carousel
+- [x] Show ingredients, instructions of chosen recipe with picture
+- [x] Handle decoding of pictures saved in binary in the database
+- [ ] Submit own ingredients as text to get recipe suggestions
+- [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
+
 
 ## Technologies Used
 
