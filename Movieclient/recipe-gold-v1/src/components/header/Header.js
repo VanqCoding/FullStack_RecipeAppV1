@@ -6,15 +6,18 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import './Header.css';
+import chefHat from '../../assets/chef-hat.png'
 
 const Header = () => {
     return (
 
-        <Navbar bg="dark" variant="dark" expand="lg" className="navbar-whole">
+        <Navbar expand="lg" className="navbar-whole">
             <Container fluid className="navbar-container">
 
                 <Navbar.Brand href="/" style={{ "color": 'gold' }}>
-                    <FontAwesomeIcon icon={faPizzaSlice} spin /><span style={{ marginLeft: '10px' }}>Food Preparation & Recipes</span></Navbar.Brand>
+                    {/* <FontAwesomeIcon icon={faPizzaSlice} spin /><span style={{ marginLeft: '10px' }}>Food Preparation & Recipes</span> */}
+                    <img src={chefHat} alt="chef hat" className="chef-hat-logo" />
+                </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse>
@@ -26,6 +29,9 @@ const Header = () => {
                         <NavLink className="nav-link" to="/">Home</NavLink>
                         <NavLink className="nav-link" to="/">Recipe List</NavLink>
                     </Nav>
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    </form>
                     <Button className="btn">Login</Button>
                     <Button className="btn">Register</Button>
                 </Navbar.Collapse>
