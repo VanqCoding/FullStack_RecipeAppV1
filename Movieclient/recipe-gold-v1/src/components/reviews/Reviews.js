@@ -4,108 +4,134 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import ReviewForm from '../reviewForm/ReviewForm';
 import React from 'react';
+import './Reviews.css'
 
 const Reviews = ({ getRecipeData, recipe, reviews, setReviews }) => {
-  const revText = useRef();
-  const params = useParams();
-  const recipeId = params.recipeId;
+    const revText = useRef();
+    const params = useParams();
+    const recipeId = params.recipeId;
 
-  // Needed to persist imageUrl
-  const [imageUrl, setImageUrl] = useState(null);
+    // Needed to persist imageUrl
+    const [imageUrl, setImageUrl] = useState(null);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await getRecipeData(recipeId);
-      } catch (err) {
-        console.error(err);
-      }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await getRecipeData(recipeId);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchData();
+    }, [recipeId]);
+
+    // Needed to show image and get url after data has been fetched
+    useEffect(() => {
+        if (recipe?.image?.data?.data) {
+            const imageData = atob(recipe.image.data.data.toString('base64'));
+            const contentType = recipe.image.content_type;
+            const blob = new Blob([new Uint8Array([...imageData].map((char) => char.charCodeAt(0)))], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            setImageUrl(url);
+        }
+    }, [recipe]);
+
+    const addReview = async (e) => {
+        e.preventDefault();
+
+        const rev = revText.current;
+
+        try {
+            const response = await api.post('/api/v1/reviews', { reviewBody: rev.value, newUniqueIdField: recipeId });
+
+            const updatedReviews = [...reviews, { body: rev.value }];
+
+            setReviews(updatedReviews);
+
+            rev.value = '';
+        } catch (err) {
+            console.error(err);
+        }
     };
 
-    fetchData();
-  }, [recipeId]);
+    const ingredientsString = recipe?.cleaned_Ingredients;
 
-  // Needed to show image and get url after data has been fetched
-  useEffect(() => {
-    if (recipe?.image?.data?.data) {
-      const imageData = atob(recipe.image.data.data.toString('base64'));
-      const contentType = recipe.image.content_type;
-      const blob = new Blob([new Uint8Array([...imageData].map((char) => char.charCodeAt(0)))], { type: contentType });
-      const url = URL.createObjectURL(blob);
-      setImageUrl(url);
-    }
-  }, [recipe]);
+    const formatIngredients = (ingredientsString) => {
+        if (!ingredientsString) return null;
 
-  const addReview = async (e) => {
-    e.preventDefault();
+        // Remove both [' at the beginning and '] at the end of the string
+        const cleanedString = ingredientsString.replace(/^\['|'\]$/g, '');
 
-    const rev = revText.current;
+        // Split the string into an array of ingredients
+        const ingredientsArray = cleanedString.split("', '");
 
-    try {
-      const response = await api.post('/api/v1/reviews', { reviewBody: rev.value, newUniqueIdField: recipeId });
+        // Return a JSX representation of the formatted ingredients
+        return ingredientsArray.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+        ));
+    };
 
-      const updatedReviews = [...reviews, { body: rev.value }];
-      console.log(updatedReviews); // Check if the new review is added
-
-      setReviews(updatedReviews);
-
-      rev.value = '';
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <h3>Recipe</h3>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col>
-            {recipe?.title}
-            {imageUrl && <img src={imageUrl} alt="" />}
-        </Col>
-        <Col>
-          {reviews ? (
-            <>
-              <Row>
+    return (
+        <Container className='whole-container'>
+            <Row className='review-title'>
                 <Col>
-                  <ReviewForm handleSubmit={addReview} revText={revText} labelText="Write a Review?" />
+                    {recipe?.title}
                 </Col>
-              </Row>
-              <Row>
+            </Row>
+            <Row className="mt-2">
                 <Col>
-                  <hr />
+                    <Row className='review-img-container'>
+                        {imageUrl && <img src={imageUrl} alt="" className='review-img' />}
+                    </Row>
+                    <Row>
+                        <ul>
+                            {formatIngredients(ingredientsString)}
+                        </ul>
+                    </Row>
+                    <Row>
+                        {recipe?.instructions}
+                    </Row>
                 </Col>
-              </Row>
-              {reviews.map((r, index) => (
-                <React.Fragment key={index}>
-                  <Row>
-                    <Col>{r.body}</Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <hr />
-                    </Col>
-                  </Row>
-                </React.Fragment>
-              ))}
-            </>
-          ) : (
-            <p>Loading reviews...</p>
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <hr />
-        </Col>
-      </Row>
-    </Container>
-  );
+                <Col>
+                    {reviews ? (
+                        <>
+                            <Row>
+                                <Col>
+                                    <ReviewForm handleSubmit={addReview} revText={revText} labelText="Write a Review?" />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <hr />
+                                </Col>
+                            </Row>
+                            {reviews.map((r, index) => (
+                                <React.Fragment key={index}>
+                                    <Row>
+                                        <Col>{r.body}</Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <hr />
+                                        </Col>
+                                    </Row>
+                                </React.Fragment>
+                            ))}
+                        </>
+                    ) : (
+                        <p>Loading reviews...</p>
+                    )}
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <hr />
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 export default Reviews;

@@ -12,6 +12,7 @@ import java.util.List;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/recipes")
@@ -27,10 +28,12 @@ public class RecipeController {
 
     @GetMapping
     public ResponseEntity<List<Recipe>> getAllRecipes(
-            @RequestParam(defaultValue = "0") int page,
+            //@RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        Page<Recipe> recipesPage = recipeService.getAllRecipes(PageRequest.of(page, size));
+        int totalPages = recipeService.getTotalPages(size);
+        int randomPage = new Random().nextInt(totalPages);
+        Page<Recipe> recipesPage = recipeService.getAllRecipes(PageRequest.of(randomPage, size));
         List<Recipe> recipes = recipesPage.getContent();
 
         return new ResponseEntity<>(recipes, HttpStatus.OK);

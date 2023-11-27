@@ -22,6 +22,11 @@ public class RecipeService {
         return recipeRepository.findAll(pageable);
     }
 
+    public int getTotalPages(int pageSize) {
+        long totalRecipes = recipeRepository.count();
+        return (int) Math.ceil((double) totalRecipes / pageSize);
+    }
+
     public Optional<Recipe> singleRecipe(String newUniqueIdField){
         return recipeRepository.findRecipeByNewUniqueIdField(newUniqueIdField);
     }

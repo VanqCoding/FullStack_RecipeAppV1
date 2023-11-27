@@ -1,64 +1,158 @@
-.recipe-carousel-container{
-    /* border: 5px solid #00ff2a; */
+.recipe-carousel-container {
     width: 100vw;
+    height: 800px;
     background-color: black;
+    font-family: "Quicksand", "sans-serif";
+
+    /* border: 5px solid gold; */
 }
 
-.recipe-card-container{
-    /* border: 10px solid #00ccff; */
+.recipe-card-container {
     height: 550px;
     background-color: black;
+    height: 700px;
+
+    /* border: 5px solid green; */
 }
 
-.recipe-card{
-    /* border: 5px solid #2f00ff; */
+.recipe-card {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)), var(--img);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), var(--img);
+
+    /* border: 5px solid red; */
 }
 
-.recipe-detail{
-    /* border: 5px solid #ff00bf; */
+.recipe-detail {
     position: absolute;
     top: 200px;
     display: flex;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-between;
+    width: 70%;
+
+    /* border: 5px solid red; */
 }
 
-.recipe-poster{
-    border: 2px solid gold;
-    height: 300px;
-    border-radius: 10px;
+.recipe-poster {
+    border-radius: 50px;
     overflow: hidden;
-    
+    margin-left: 100px;
+    height: 300px;
+    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.5);
+
+    /* border: 5px solid red; */
 }
 
-.recipe-poster > img{
+.recipe-poster>img {
     height: 100%;
     width: 100%;
+
 }
 
-.recipe-title{
-    /* border: 5px solid #ff0000; */
+.recipe-title {
     color: white;
     display: flex;
     align-items: center;
+    font-weight: bolder;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+
+    /* border: 5px solid red; */
 }
 
-.recipe-buttons-container{
-    display:flex;
+.recipe-buttons-container {
+    /* font-family: 'Bebas Neue', sans-serif; */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    width:300px;
 }
 
+.recipe-button {
+    width: 140px;
+    height: 50px;
+    background: linear-gradient(to top, #4e79a8, #8fb1e0, #c3d3f2);
+    color: black;
+    font-weight: bold;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.recipe-button span {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: top 0.5s;
+}
+
+.recipe-button-text-one {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.recipe-button-text-two {
+    position: absolute;
+    width: 100%;
+    top: 150%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.recipe-button:hover .recipe-button-text-one {
+    top: -100%;
+}
+
+.recipe-button:hover .recipe-button-text-two {
+    top: 50%;
+}
+
+
 @media only screen and (max-width: 800px) {
-    .movie-detail{
+    .movie-detail {
         flex-direction: column;
         align-items: center;
-        top:20px;
+        top: 20px;
     }
+}
+
+
+
+@keyframes shining {
+    0% {
+        color: #ffeb3b;
+        /* Yellow color */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    50% {
+        color: #ffdf00;
+        /* A slightly darker yellow */
+        text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
+    }
+
+    100% {
+        color: #ffeb3b;
+        /* Reverts back to the initial yellow color */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.today-inspiration {
+    animation: shining 2s infinite;
+    color: #ffeb3b;
+    /* Initial yellow color */
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Dancing Script', cursive;
 }

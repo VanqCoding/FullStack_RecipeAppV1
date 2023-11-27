@@ -1,7 +1,7 @@
 import './App.css';
 import api from './api/axiosConfig';
-import {useState, useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import Home from './components/home/Home';
@@ -17,55 +17,53 @@ function App() {
 
   console.log('APP RECIPE IS:', JSON.stringify(recipe, null, 2));
 
-  const getRecipes = async () =>{
-    
-    try
-    {
+  const getRecipes = async () => {
+
+    try {
 
       const response = await api.get("/api/v1/recipes");
 
       setRecipes(response.data);
 
-    } 
-    catch(err)
-    {
+    }
+    catch (err) {
       console.log(err);
     }
   }
 
   const getRecipeData = async (recipeId) => {
     try {
-        console.log('Fetching recipe data for recipeId:', recipeId);
-        const response = await api.get(`/api/v1/recipes/${recipeId}`);
-        const singleRecipe = response.data;
-        /* console.log('Fetched recipe data:', singleRecipe); */
+      console.log('Fetching recipe data for recipeId:', recipeId);
+      const response = await api.get(`/api/v1/recipes/${recipeId}`);
+      const singleRecipe = response.data;
+      /* console.log('Fetched recipe data:', singleRecipe); */
 
-        setRecipe(singleRecipe);
+      setRecipe(singleRecipe);
 
-        // --- FIXED ---
-        // setReviews(singleRecipe.reviews);
-        setReviews(singleRecipe.reviewIds);
+      // --- FIXED ---
+      // setReviews(singleRecipe.reviews);
+      setReviews(singleRecipe.reviewIds);
     } catch (error) {
-        console.error('Error fetching recipe data:', error);
+      console.error('Error fetching recipe data:', error);
     }
-};
+  };
 
 
   useEffect(() => {
     getRecipes();
-  },[])
+  }, [])
 
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <Routes>
-          <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home recipes={recipes} />} ></Route>
 
-          <Route path="/Reviews/:recipeId" element ={<Reviews getRecipeData = {getRecipeData} recipe={recipe} reviews={reviews} setReviews={setReviews} />}></Route>
+          <Route path="/Reviews/:recipeId" element={<Reviews getRecipeData={getRecipeData} recipe={recipe} reviews={reviews} setReviews={setReviews} />}></Route>
 
-          <Route path="*" element = {<NotFound/>}></Route>
-          </Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Route>
       </Routes>
 
     </div>

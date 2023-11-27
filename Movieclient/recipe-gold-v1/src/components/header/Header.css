@@ -1,4 +1,9 @@
-.bn632-hover {
+.navbar-container {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+}
+
+/* .bn632-hover {
     width: 80px;
     font-size: 13px;
     font-weight: 600;
@@ -37,4 +42,45 @@
       #3f86ed
     );
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-  }
+  } */
+
+.btn {
+  font-size: 18px;
+  color: #e1e1e1;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  margin-right: 5px;
+}
+
+.btn:focus,
+.btn:hover {
+  color: #fff;
+}
+
+.btn:focus:after,
+.btn:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.btn:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
