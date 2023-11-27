@@ -35,6 +35,7 @@ TODO:
 - [ ] Submit own ingredients as text to get recipe suggestions
 - [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
 - <input type="checkbox" checked style="color: green;"/> Checked Box
+- <input type="checkbox" style="color: green;"/> Unchecked Box
 
 
 ## Technologies Used
