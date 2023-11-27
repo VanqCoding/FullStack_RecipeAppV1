@@ -34,8 +34,6 @@ TODO:
 - [x] Handle decoding of pictures saved in binary in the database
 - [ ] Submit own ingredients as text to get recipe suggestions
 - [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
-- [✔️]  Checked Box
-
 
 ## Technologies Used
 
