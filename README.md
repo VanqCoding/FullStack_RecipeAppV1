@@ -34,8 +34,7 @@ TODO:
 - [x] Handle decoding of pictures saved in binary in the database
 - [ ] Submit own ingredients as text to get recipe suggestions
 - [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
-- <input type="checkbox" checked style="color: green;"/> Checked Box
-- <input type="checkbox" style="color: green;"/> Unchecked Box
+- [✔️]  Checked Box
 
 
 ## Technologies Used
