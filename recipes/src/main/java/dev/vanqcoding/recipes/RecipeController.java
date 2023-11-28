@@ -2,17 +2,16 @@ package dev.vanqcoding.recipes;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
+import java.util.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/recipes")
@@ -21,19 +20,34 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-//    @GetMapping
-//    public ResponseEntity<List<Recipe>> getAllRecipes(){
-//        return new ResponseEntity<List<Recipe>>(recipeService.getAllRecipes(), HttpStatus.OK);
-//    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Recipe>> searchRecipes(
+            @RequestParam String query,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Page<Recipe> searchResults = recipeService.searchRecipes(query, PageRequest.of(page, size));
 
-    @GetMapping
-    public ResponseEntity<List<Recipe>> getAllRecipes(
+        if (!searchResults.isEmpty()) {
+            return new ResponseEntity<>(searchResults.getContent(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
+        }
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<Recipe>> getAllRecipes() {
+        List<Recipe> recipes = recipeService.getAllRecipes();
+        return ResponseEntity.ok(recipes);
+    }
+
+    @GetMapping("/home")
+    public ResponseEntity<List<Recipe>> getHomeRecipes(
             //@RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         int totalPages = recipeService.getTotalPages(size);
         int randomPage = new Random().nextInt(totalPages);
-        Page<Recipe> recipesPage = recipeService.getAllRecipes(PageRequest.of(randomPage, size));
+        Page<Recipe> recipesPage = recipeService.getHomeRecipes(PageRequest.of(randomPage, size));
         List<Recipe> recipes = recipesPage.getContent();
 
         return new ResponseEntity<>(recipes, HttpStatus.OK);

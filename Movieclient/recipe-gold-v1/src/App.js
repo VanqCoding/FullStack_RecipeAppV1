@@ -12,16 +12,15 @@ import NotFound from './components/notFound/NotFound';
 function App() {
 
   const [recipes, setRecipes] = useState();
+  const [allRecipes, setAllRecipes] = useState();
   const [recipe, setRecipe] = useState();
   const [reviews, setReviews] = useState([]);
-
-  console.log('APP RECIPE IS:', JSON.stringify(recipe, null, 2));
 
   const getRecipes = async () => {
 
     try {
 
-      const response = await api.get("/api/v1/recipes");
+      const response = await api.get("/api/v1/recipes/home");
 
       setRecipes(response.data);
 
@@ -48,14 +47,13 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     getRecipes();
   }, [])
 
   return (
     <div className="App">
-      <Header />
+      <Header setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home recipes={recipes} />} ></Route>

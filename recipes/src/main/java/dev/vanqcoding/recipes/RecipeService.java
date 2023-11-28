@@ -14,11 +14,15 @@ public class RecipeService {
     @Autowired
     private RecipeRepository recipeRepository;
 
+    public Page<Recipe> searchRecipes(String query, Pageable pageable) {
+        return recipeRepository.findByTitleContainingIgnoreCase(query, pageable);
+    }
+
     public List<Recipe> getAllRecipes(){
         return recipeRepository.findAll();
     }
 
-    public Page<Recipe> getAllRecipes(Pageable pageable) {
+    public Page<Recipe> getHomeRecipes(Pageable pageable) {
         return recipeRepository.findAll(pageable);
     }
 

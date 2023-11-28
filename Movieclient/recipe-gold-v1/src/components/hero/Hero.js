@@ -12,8 +12,6 @@ const Hero = ({ recipes }) => {
     navigate(`/Reviews/${recipeId}`);
   }
 
-
-
   return (
     <div className='recipe-carousel-container'>
       <Carousel>
@@ -24,7 +22,7 @@ const Hero = ({ recipes }) => {
             const contentType = recipe.image.content_type;
             const blob = new Blob([new Uint8Array([...imageData].map((char) => char.charCodeAt(0)))], { type: contentType });
             const imageUrl = URL.createObjectURL(blob);
-            /* console.log(recipe) */
+
             return (
               <Paper key={recipe.newUniqueIdField}>
                 <div className='recipe-card-container'>
@@ -38,8 +36,8 @@ const Hero = ({ recipes }) => {
                         <h4>{recipe.title}</h4>
                       </div>
                       <div className="recipe-buttons-container">
-                        <button onClick={() => reviews(recipe.newUniqueIdField)} className='recipe-button'><span class="recipe-button-text-one">Show recipe</span>
-                          <span class="recipe-button-text-two">Leave Review</span></button>
+                        <button onClick={() => reviews(recipe.newUniqueIdField)} className='recipe-button'><span className="recipe-button-text-one">Show recipe</span>
+                          <span className="recipe-button-text-two">Leave Review</span></button>
                       </div>
                     </div>
                   </div>
@@ -51,7 +49,6 @@ const Hero = ({ recipes }) => {
       </Carousel>
     </div>
   )
-
 }
 
 export default Hero;
