@@ -1,9 +1,9 @@
-import React from 'react';
 import './Hero.css';
+import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import Button from "react-bootstrap/Button";
+import { useNavigate } from 'react-router-dom';
+/* import Button from "react-bootstrap/Button"; */
 
 const Hero = ({ recipes }) => {
   const navigate = useNavigate();

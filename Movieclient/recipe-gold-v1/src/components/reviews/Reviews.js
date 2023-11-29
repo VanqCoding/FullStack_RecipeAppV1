@@ -1,10 +1,10 @@
+import './Reviews.css'
+import React from 'react';
 import api from '../../api/axiosConfig';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import ReviewForm from '../reviewForm/ReviewForm';
-import React from 'react';
-import './Reviews.css'
 
 const Reviews = ({ getRecipeData, recipe, reviews, setReviews }) => {
     const revText = useRef();

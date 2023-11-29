@@ -1,18 +1,24 @@
 import './Header.css';
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import chefHat from '../../assets/chef-hat.png'
 import api from '../../api/axiosConfig';
+/* import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container"; */
 
-const Header = ({ allRecipes, setAllRecipes }) => {
+const Header = ({ setAllRecipes }) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const searchContainerRef = useRef(null);
+    const navigate = useNavigate();
+
+    function reviews(recipeId) {
+        navigate(`/Reviews/${recipeId}`);
+    }
 
     useEffect(() => {
         const searchRecipes = async () => {
@@ -49,13 +55,12 @@ const Header = ({ allRecipes, setAllRecipes }) => {
         };
     }, []);
 
-    console.log('searchQuery:', searchQuery);
-    console.log('searchResults:', searchResults);
+/*     console.log('searchQuery:', searchQuery);
+    console.log('searchResults:', searchResults); */
 
     return (
         <Navbar expand="lg" className="navbar-whole">
             <Navbar.Brand href="/" style={{ "color": 'gold' }}>
-                {/* <FontAwesomeIcon icon={faPizzaSlice} spin /><span style={{ marginLeft: '10px' }}>Food Preparation & Recipes</span> */}
                 <img src={chefHat} alt="chef hat" className="chef-hat-logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
@@ -66,7 +71,7 @@ const Header = ({ allRecipes, setAllRecipes }) => {
                     navbarScroll
                 >
                     <NavLink className="nav-link" to="/">Home</NavLink>
-                    <NavLink className="nav-link" to="/">Recipe List</NavLink>
+                    <NavLink className="nav-link" to="/MagicRecipe">Magic Search</NavLink>
                 </Nav>
                 <div className="search-container" ref={searchContainerRef}>
                     <input
@@ -78,7 +83,10 @@ const Header = ({ allRecipes, setAllRecipes }) => {
                     />
                     <ul className="search-results">
                         {searchResults.map((recipe, index) => (
-                            <li key={index}>{recipe.title}</li>
+                            <li key={index} onClick={() => {
+                                reviews(recipe.newUniqueIdField)
+                                setSearchResults([])
+                            }}>{recipe.title}</li>
                         ))}
                     </ul>
                 </div>

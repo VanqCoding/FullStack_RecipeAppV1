@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 
-const ReviewForm = ({ handleSubmit, revText, labelText, defaultValue }) => {
+const MagicRecipeForm = ({ handleSubmit, revText, labelText, defaultValue }) => {
   return (
 
     <Form>
@@ -14,4 +14,4 @@ const ReviewForm = ({ handleSubmit, revText, labelText, defaultValue }) => {
   )
 }
 
-export default ReviewForm
+export default MagicRecipeForm

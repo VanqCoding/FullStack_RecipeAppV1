@@ -8,6 +8,7 @@ import Home from './components/home/Home';
 import Header from './components/header/Header';
 import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notFound/NotFound';
+import MagicRecipe from './components/magicRecipe/MagicRecipe';
 
 function App() {
 
@@ -53,12 +54,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
+      <Header setAllRecipes={setAllRecipes} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home recipes={recipes} />} ></Route>
 
           <Route path="/Reviews/:recipeId" element={<Reviews getRecipeData={getRecipeData} recipe={recipe} reviews={reviews} setReviews={setReviews} />}></Route>
+          <Route path="/MagicRecipe" element={<MagicRecipe getRecipeData={getRecipeData} recipe={recipe} reviews={reviews} setReviews={setReviews} />} ></Route>
 
           <Route path="*" element={<NotFound />}></Route>
         </Route>
