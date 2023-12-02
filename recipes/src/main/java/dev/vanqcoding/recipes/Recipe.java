@@ -8,10 +8,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.util.List;
 
-@Document(collection = "recipesWithPics")
-@CompoundIndex(def = "{'Title': 1}")
+@Document(collection = "recipesWithPics2")
+@CompoundIndex(def = "{'Title': 1, 'Cleaned_Ingredients': 1}")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +23,8 @@ public class Recipe {
     private String Title;
     private String Ingredients;
     private String Instructions;
-    private String Cleaned_Ingredients;
+    @Field("Cleaned_Ingredients")
+    private List<String> Cleaned_Ingredients;
     private Object Image;
     
 //    private String source;

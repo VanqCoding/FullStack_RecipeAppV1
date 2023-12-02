@@ -34,6 +34,32 @@ public class RecipeController {
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
         }
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/magicsearch")
+    public ResponseEntity<Page<Recipe>> magicSearchRecipes(
+            @RequestParam String query,
+            Pageable pageable
+    ) {
+        // Log relevant information for debugging
+        System.out.println("Query: " + query);
+        System.out.println("Page Number: " + pageable.getPageNumber());
+        System.out.println("Page Size: " + pageable.getPageSize());
+        System.out.println("Offset: " + pageable.getOffset());
+
+        // Split the input into an array of ingredients
+        List<String> ingredients = Arrays.asList(query.split(","));
+
+        Page<Recipe> searchResults = recipeService.magicSearchRecipes(ingredients, pageable);
+        System.out.println("Number of Results: " + searchResults.getSize());
+
+        if (!searchResults.isEmpty()) {
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(Page.empty(), HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Recipe>> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();

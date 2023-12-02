@@ -15,4 +15,6 @@ public interface RecipeRepository extends MongoRepository<Recipe, ObjectId> {
     Optional<Recipe> findRecipeByNewUniqueIdField(String newUniqueIdField);
     @Query("{'Title': {$regex : ?0, $options: 'i'}}")
     Page<Recipe> findByTitleContainingIgnoreCase(String title, Pageable pageable);
+    @Query("{'Cleaned_Ingredients': {'$all': ?0}}")
+    Page<Recipe> findByIngredientsContainingIgnoreCase(List<String> ingredients, Pageable pageable);
 }

@@ -56,9 +56,18 @@ const Reviews = ({ getRecipeData, recipe, reviews, setReviews }) => {
         }
     };
 
-    const ingredientsString = recipe?.cleaned_Ingredients;
+    const formatIngredients = (ingredientsArray) => {
+        if (!ingredientsArray || !Array.isArray(ingredientsArray)) return null;
 
-    const formatIngredients = (ingredientsString) => {
+        // Return a JSX representation of the formatted ingredients
+        return ingredientsArray.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+        ));
+    };
+
+    // cleaned_Ingredients is no longer a String but an array
+
+    /* const formatIngredients = (ingredientsString) => {
         if (!ingredientsString) return null;
 
         // Remove both [' at the beginning and '] at the end of the string
@@ -71,7 +80,7 @@ const Reviews = ({ getRecipeData, recipe, reviews, setReviews }) => {
         return ingredientsArray.map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
         ));
-    };
+    }; */
 
     return (
         <Container className='whole-container'>
@@ -81,13 +90,13 @@ const Reviews = ({ getRecipeData, recipe, reviews, setReviews }) => {
                 </Col>
             </Row>
             <Row className="mt-2">
-                <Col>
+                <Col className='ingredients-instructions'>
                     <Row className='review-img-container'>
                         {imageUrl && <img src={imageUrl} alt="" className='review-img' />}
                     </Row>
                     <Row>
                         <ul>
-                            {formatIngredients(ingredientsString)}
+                            {formatIngredients(recipe?.cleaned_Ingredients)}
                         </ul>
                     </Row>
                     <Row>

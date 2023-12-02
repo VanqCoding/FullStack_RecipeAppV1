@@ -1,0 +1,51 @@
+.magic-container {
+ background-color: pink;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 10px;
+
+    /* border: 2px solid red; */
+}
+
+.pagination li {
+    margin-right: 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.recipe-item {
+    height: 50px;
+    /* Adjust the value based on your design preferences */
+    overflow: hidden;
+}
+
+.title-col {
+    max-height: 3em;
+    /* Adjust the value based on your design preferences */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.magic-img {
+    border-radius: 5px;
+}
+
+
+/*  .magic-img-container {
+    width: 200px;
+  } */
