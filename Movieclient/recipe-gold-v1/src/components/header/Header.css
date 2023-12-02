@@ -7,11 +7,12 @@
 
 .login-buttons {
   color: black;
+  margin-right: 10px;
 }
 
 .login-button {
-  font-size: 18px;
-  color: #e1e1e1;
+  font-size: 16px;
+  color: white;
   font-family: inherit;
   font-weight: 800;
   cursor: pointer;
