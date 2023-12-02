@@ -15,8 +15,15 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: green;
+  /* background-color: green; */
+  background-image: url("assets/background2.jpg");
+  background-size: cover;
+  /* or contain, or a specific value like 100% 100% */
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* or specify the position like 50% 50% */
   color: white;
-
-  /* border: 5px solid blue; */
 }
+
+
+/* border: 5px solid blue; */

@@ -9,7 +9,7 @@
   color: black;
 }
 
-.btn {
+.login-button {
   font-size: 18px;
   color: #e1e1e1;
   font-family: inherit;
@@ -25,18 +25,18 @@
   margin-left: 5px;
 }
 
-.btn:focus,
-.btn:hover {
+.login-button:focus,
+.login-button:hover {
   color: #fff;
 }
 
-.btn:focus:after,
-.btn:hover:after {
+.login-button:focus:after,
+.login-button:hover:after {
   width: 100%;
   left: 0%;
 }
 
-.btn:after {
+.login-button:after {
   content: "";
   pointer-events: none;
   bottom: -2px;

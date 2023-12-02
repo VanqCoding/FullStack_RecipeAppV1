@@ -1,5 +1,10 @@
 .magic-container {
- background-color: pink;
+    background-color: rgba(0, 0, 0, 0.6);
+    min-height: 100vh;
+    opacity: 100%;
+    padding: 10px;
+
+    border: 2px solid red;
 }
 
 .pagination {
@@ -16,9 +21,9 @@
 
 .pagination li a {
     text-decoration: none;
-    color: #007bff;
+    color: white;
     padding: 5px 10px;
-    border: 1px solid #007bff;
+    border: 1px solid white;
     border-radius: 3px;
 }
 
@@ -28,10 +33,16 @@
     border: 1px solid #007bff;
 }
 
+.whole-recipe-item {
+    text-align: center;
+}
+
 .recipe-item {
     height: 50px;
     /* Adjust the value based on your design preferences */
     overflow: hidden;
+
+    /* border: 2px solid red; */
 }
 
 .title-col {
@@ -42,9 +53,23 @@
 }
 
 .magic-img {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+
+    /* border: 2px solid red; */
+}
+
+.magic-img>img {
     border-radius: 5px;
 }
 
+.form-label {
+    font-size: 20px;
+}
 
 /*  .magic-img-container {
     width: 200px;

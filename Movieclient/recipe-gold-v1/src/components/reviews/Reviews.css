@@ -1,8 +1,7 @@
 .whole-container {
     font-family: "Quicksand", "sans-serif";
     padding: 10px;
-
-    background-color: red;
+    background-color: rgba(0, 0, 0, 0.6);
     /* border: 2px solid red; */
 }
 

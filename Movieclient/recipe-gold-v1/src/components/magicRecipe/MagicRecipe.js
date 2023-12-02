@@ -1,10 +1,12 @@
 import './MagicRecipe.css';
 import api from '../../api/axiosConfig';
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import MagicRecipeForm from '../reviewForm/MagicRecipeForm';
 
 const MagicRecipe = () => {
+    const navigate = useNavigate();
     const [foundRecipes, setFoundRecipes] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
@@ -121,8 +123,9 @@ const MagicRecipe = () => {
         fetchImageUrls();
     }, [foundRecipes]);
 
-
-
+    function reviews(recipeId) {
+        navigate(`/Reviews/${recipeId}`);
+    }
 
     return (
         <Container className='magic-container'>
@@ -142,7 +145,7 @@ const MagicRecipe = () => {
                     {loading ? (
                         <p>Loading recipe suggestions...</p>
                     ) : (
-                        <Row>
+                        <Row className='whole-recipe-item'>
                             {foundRecipes.map((foundRecipe, index) => (
                                 <Col key={index} xs={12} sm={6} md={4} lg={3} className="mb-4">
                                     <Row className="recipe-item">
@@ -152,17 +155,13 @@ const MagicRecipe = () => {
                                     </Row>
                                     <Row className='magic-img-container'>
                                         <Col>
-                                            {imageUrl && imageUrl[foundRecipe.newUniqueIdField] && <img src={imageUrl[foundRecipe.newUniqueIdField]} alt="" className='magic-img' />}
+                                        <button className='magic-img' onClick={() => reviews(foundRecipe.newUniqueIdField)}>{imageUrl && imageUrl[foundRecipe.newUniqueIdField] && <img src={imageUrl[foundRecipe.newUniqueIdField]} alt=""/>}</button>
                                         </Col>
                                     </Row>
                                 </Col>
                             ))}
                         </Row>
                     )}
-
-
-
-
                     <MyPagination
                         activePage={currentPage + 1} // Bootstrap Pagination uses 1-based indexing
                         totalPages={totalPages} // Pass the correct totalPages prop

@@ -55,9 +55,6 @@ const Header = ({ setAllRecipes }) => {
         };
     }, []);
 
-/*     console.log('searchQuery:', searchQuery);
-    console.log('searchResults:', searchResults); */
-
     return (
         <Navbar expand="lg" className="navbar-whole">
             <Navbar.Brand href="/" style={{ "color": 'gold' }}>
@@ -91,8 +88,8 @@ const Header = ({ setAllRecipes }) => {
                     </ul>
                 </div>
                 <div className='login-buttons'>
-                    <button className="btn">Login</button>
-                    <button className="btn">Register</button>
+                    <button className="login-button">Login</button>
+                    <button className="login-button">Register</button>
                 </div>
             </Navbar.Collapse>
         </Navbar>
