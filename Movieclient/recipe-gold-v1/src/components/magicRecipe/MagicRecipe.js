@@ -2,7 +2,7 @@ import './MagicRecipe.css';
 import api from '../../api/axiosConfig';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import MagicRecipeForm from '../reviewForm/MagicRecipeForm';
 
 const MagicRecipe = () => {
@@ -143,7 +143,13 @@ const MagicRecipe = () => {
                         </Col>
                     </Row>
                     {loading ? (
-                        <p>Loading recipe suggestions...</p>
+                        // Display a loading spinner
+                        <div className="text-center">
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                            <p>Loading recipe suggestions...</p>
+                        </div>
                     ) : (
                         <Row className='whole-recipe-item'>
                             {foundRecipes.map((foundRecipe, index) => (
@@ -155,7 +161,7 @@ const MagicRecipe = () => {
                                     </Row>
                                     <Row className='magic-img-container'>
                                         <Col>
-                                        <button className='magic-img' onClick={() => reviews(foundRecipe.newUniqueIdField)}>{imageUrl && imageUrl[foundRecipe.newUniqueIdField] && <img src={imageUrl[foundRecipe.newUniqueIdField]} alt=""/>}</button>
+                                            <button className='magic-img' onClick={() => reviews(foundRecipe.newUniqueIdField)}>{imageUrl && imageUrl[foundRecipe.newUniqueIdField] && <img src={imageUrl[foundRecipe.newUniqueIdField]} alt="" />}</button>
                                         </Col>
                                     </Row>
                                 </Col>
