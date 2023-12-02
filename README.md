@@ -40,7 +40,7 @@ TODO:
 - [x] Implement simple recipe searching based on title
 - [x] Implement recipe searching based on ingredients to get recipe suggestions
       (Input ingredients are taken as query and get matched the array "cleaned_Ingredients" in the MongoDB database)
-- [ ] Fix bug for proper pagination
+- [x] Fix bug for proper pagination
 - [ ] Submit a picture of own ingredients and make AI detect ingredients and suggest recipes
 
 ## Technologies Used
