@@ -64,7 +64,7 @@ const Header = ({ setAllRecipes }) => {
             <Navbar.Collapse>
                 <Nav
                     className="me-auto my-2 my-lg-0"
-                    style={{ maxHeight: '100px' }}
+                    style={{ maxHeight: '100px', fontFamily:'Bebas Neue'}}
                     navbarScroll
                 >
                     <NavLink className="nav-link" to="/">Home</NavLink>
